@@ -115,11 +115,11 @@
 
 <div class="container">
     <div class="toolbar">
-        <button class="send-button" onclick="filterAvailable()">Available</button>
-        <button class="send-button" onclick="filterPriceRange(1000, 1500)">Price: $1000-$1500</button>
-        <button class="send-button" onclick="filterPriceRange(1501, 2000)">Price: $1501-$2000</button>
-        <button class="send-button" onclick="filterPriceRange(2001, 2500)">Price: $2001-$2500</button>
-        <button class="send-button" onclick="sortRecent()">Sort by Most Recent</button>
+        <button id="send-button" onclick="filterAvailable()">Available</button>
+        <button id="send-button" onclick="filterPriceRange(1000, 1500)">Price: $1000-$1500</button>
+        <button id="send-button" onclick="filterPriceRange(1501, 2000)">Price: $1501-$2000</button>
+        <button id="send-button" onclick="filterPriceRange(2001, 2500)">Price: $2001-$2500</button>
+        <button id="send-button" onclick="sortRecent()">Sort by Most Recent</button>
     </div>
     <div id="apartment-list">
         <!-- Apartment listings will be dynamically added here -->
