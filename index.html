@@ -196,20 +196,40 @@
 
 <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <script>
-    // Initialize the Dialogflow chatbot
-    window.dfMessenger = new window.DialogflowMessenger({
-        projectId: 'YOUR_PROJECT_ID',
-        location: 'us-central1',
-        language: 'en',
-    });
-
-    // Function to send user message to chatbot
-    function sendMessage() {
+    async function sendMessage() {
         var userInput = document.getElementById('user-input').value;
         if (userInput) {
-            window.dfMessenger.sendText(userInput);
+            displayMessage(userInput, 'user');
             document.getElementById('user-input').value = '';
+            const response = await getBotResponse(userInput);
+            displayMessage(response, 'bot');
         }
+    }
+
+    async function getBotResponse(userInput) {
+        const response = await fetch('https://api.openai.com/v1/completions', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer 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' // Replace with your OpenAI API key
+            },
+            body: JSON.stringify({
+                model: 'text-davinci-003', // ChatGPT model
+                prompt: userInput,
+                max_tokens: 50
+            })
+        });
+        const data = await response.json();
+        return data.choices[0].text.trim();
+    }
+
+    function displayMessage(message, sender) {
+        const chatDisplay = document.getElementById('chat-display');
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender);
+        messageElement.innerText = message;
+        chatDisplay.appendChild(messageElement);
+        chatDisplay.scrollTop = chatDisplay.scrollHeight;
     }
 </script>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0"></script>
