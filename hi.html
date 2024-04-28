@@ -52,47 +52,22 @@
 
 <div class="container">
     <h1>Available Apartments in Davis Area</h1>
-    <div id="apartment-list"></div>
+    <div id="apartment-list">
+        <div class="apartment">
+            <h2>Cozy Studio Apartment</h2>
+            <p>Price: $1200</p>
+            <p>Availability: Available</p>
+            <p><a href="https://www.facebook.com/groups/davisapartmentsearch/" target="_blank">View on Facebook</a></p>
+        </div>
+        <div class="apartment">
+            <h2>Spacious 2 Bedroom Apartment</h2>
+            <p>Price: $1800</p>
+            <p>Availability: Not Available</p>
+            <p><a href="https://www.facebook.com/groups/davisapartmentsearch/" target="_blank">View on Facebook</a></p>
+        </div>
+        <!-- Add more apartment listings as needed -->
+    </div>
 </div>
-
-<script>
-    // Assume 'apartments' is an array of objects fetched from your API
-    const apartments = [
-        {
-            text: "Cozy Studio Apartment",
-            price: 1200,
-            available: true,
-            link: "https://www.facebook.com/groups/davisapartmentsearch/"
-        },
-        {
-            text: "Spacious 2 Bedroom Apartment",
-            price: 1800,
-            available: false,
-            link: "https://www.facebook.com/groups/davisapartmentsearch/"
-        }
-        // Add more apartment objects as needed
-    ];
-
-    // Function to render apartment listings
-    function renderApartments() {
-        const apartmentListDiv = document.getElementById('apartment-list');
-        apartmentListDiv.innerHTML = '';
-        apartments.forEach(apartment => {
-            const apartmentDiv = document.createElement('div');
-            apartmentDiv.classList.add('apartment');
-            apartmentDiv.innerHTML = `
-                <h2>${apartment.text}</h2>
-                <p>Price: $${apartment.price}</p>
-                <p>Availability: ${apartment.available ? 'Available' : 'Not Available'}</p>
-                <p><a href="${apartment.link}" target="_blank">View on Facebook</a></p>
-            `;
-            apartmentListDiv.appendChild(apartmentDiv);
-        });
-    }
-
-    // Render apartments on page load
-    window.onload = renderApartments;
-</script>
 
 </body>
 </html>
