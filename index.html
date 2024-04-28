@@ -204,10 +204,10 @@
         if (userMessage !== '') {
             displayMessage('You: ' + userMessage);
             userInput.value = '';
-            // You can add your bot response logic here
-            // For simplicity, let's just echo the user's message
+            // Simulate bot response after a short delay
             setTimeout(() => {
-                displayMessage('Bot: ' + userMessage.split('').reverse().join(''));
+                const botMessage = 'Bot: ' + userMessage.split('').reverse().join('');
+                displayMessage(botMessage);
             }, 500);
         }
     });
