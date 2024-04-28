@@ -12,7 +12,7 @@
         background-color: #f4f4f4;
     }
     .banner {
-        background-color: #333;
+        background-color: #007bff;
         color: #fff;
         text-align: center;
         padding: 20px 0;
@@ -60,6 +60,20 @@
 <div class="banner">
     <h1>Housing in Davis</h1>
 </div>
+
+<div class="container">
+    <div class="toolbar">
+        <button onclick="filterAvailable()">Available</button>
+        <button onclick="filterPriceRange(1000, 1500)">Price: $1000-$1500</button>
+        <button onclick="filterPriceRange(1501, 2000)">Price: $1501-$2000</button>
+        <button onclick="filterPriceRange(2001, 2500)">Price: $2001-$2500</button>
+        <button onclick="sortRecent()">Sort by Most Recent</button>
+    </div>
+    <div id="apartment-list">
+        <!-- Apartment listings will be dynamically added here -->
+    </div>
+</div>
+
 
 <div class="container">
     <h2>Available Apartments</h2>
