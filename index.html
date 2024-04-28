@@ -194,45 +194,31 @@
 </div>
 
 
-<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <script>
-    async function sendMessage() {
-        var userInput = document.getElementById('user-input').value;
-        if (userInput) {
-            displayMessage(userInput, 'user');
-            document.getElementById('user-input').value = '';
-            const response = await getBotResponse(userInput);
-            displayMessage(response, 'bot');
+    const chatBox = document.getElementById('chat-box');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+
+    sendBtn.addEventListener('click', () => {
+        const userMessage = userInput.value.trim();
+        if (userMessage !== '') {
+            displayMessage('You: ' + userMessage);
+            userInput.value = '';
+            // You can add your bot response logic here
+            // For simplicity, let's just echo the user's message
+            setTimeout(() => {
+                displayMessage('Bot: ' + userMessage.split('').reverse().join(''));
+            }, 500);
         }
-    }
+    });
 
-    async function getBotResponse(userInput) {
-        const response = await fetch('https://api.openai.com/v1/completions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer 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' // Replace with your OpenAI API key
-            },
-            body: JSON.stringify({
-                model: 'text-davinci-003', // ChatGPT model
-                prompt: userInput,
-                max_tokens: 50
-            })
-        });
-        const data = await response.json();
-        return data.choices[0].text.trim();
-    }
-
-    function displayMessage(message, sender) {
-        const chatDisplay = document.getElementById('chat-display');
+    function displayMessage(message) {
         const messageElement = document.createElement('div');
-        messageElement.classList.add('message', sender);
-        messageElement.innerText = message;
-        chatDisplay.appendChild(messageElement);
-        chatDisplay.scrollTop = chatDisplay.scrollHeight;
+        messageElement.textContent = message;
+        chatBox.appendChild(messageElement);
+        chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to bottom
     }
 </script>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0"></script>
 
 
 </body>
