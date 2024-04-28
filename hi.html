@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Davis Area Apartments</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .apartment {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+    }
+    .apartment h2 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #444;
+    }
+    .apartment p {
+        margin: 5px 0;
+    }
+    .apartment a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    .apartment a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Available Apartments in Davis Area</h1>
+    <div id="apartment-list"></div>
+</div>
+
+<script>
+    // Assume 'apartments' is an array of objects fetched from your API
+    const apartments = [
+        {
+            text: "Cozy Studio Apartment",
+            price: 1200,
+            available: true,
+            link: "https://www.facebook.com/groups/davisapartmentsearch/"
+        },
+        {
+            text: "Spacious 2 Bedroom Apartment",
+            price: 1800,
+            available: false,
+            link: "https://www.facebook.com/groups/davisapartmentsearch/"
+        }
+        // Add more apartment objects as needed
+    ];
+
+    // Function to render apartment listings
+    function renderApartments() {
+        const apartmentListDiv = document.getElementById('apartment-list');
+        apartmentListDiv.innerHTML = '';
+        apartments.forEach(apartment => {
+            const apartmentDiv = document.createElement('div');
+            apartmentDiv.classList.add('apartment');
+            apartmentDiv.innerHTML = `
+                <h2>${apartment.text}</h2>
+                <p>Price: $${apartment.price}</p>
+                <p>Availability: ${apartment.available ? 'Available' : 'Not Available'}</p>
+                <p><a href="${apartment.link}" target="_blank">View on Facebook</a></p>
+            `;
+            apartmentListDiv.appendChild(apartmentDiv);
+        });
+    }
+
+    // Render apartments on page load
+    window.onload = renderApartments;
+</script>
+
+</body>
+</html>
